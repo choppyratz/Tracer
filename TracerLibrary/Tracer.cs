@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Diagnostics;
+using System.Reflection;
 using System.Threading;
 
-namespace Tracer
+namespace TracerLibrary
 {
-    class Tracer : ITracer
+    public class Tracer : ITracer
     {
         private List<ThreadInfo> threads = new List<ThreadInfo> { };
         public static object locker = new object();
 
         public void StartTrace()
         {
+
             int threadId = Thread.CurrentThread.ManagedThreadId;
             ThreadInfo currentThread = null;
             Stopwatch threadTracer = new Stopwatch();
-            lock (locker) {
+            lock (locker)
+            {
                 threads.ForEach(item => {
                     if (item._id == threadId)
                     {
@@ -34,7 +36,7 @@ namespace Tracer
             StackFrame frame = new StackFrame(1);
             MethodBase methodContext = frame.GetMethod();
             Stopwatch tracer = new Stopwatch();
-  
+
             MethodInfo currentMethod = new MethodInfo(methodContext.DeclaringType.Name, methodContext.Name, tracer);
             if (currentThread.currMethod != null)
             {
@@ -42,7 +44,8 @@ namespace Tracer
                 currentMethod.parent = currentThread.currMethod;
                 currentThread.parent = currentThread.currMethod.parent;
                 currentThread.currMethod = currentMethod;
-            }else
+            }
+            else
             {
                 currentThread.stackContext.Add(currentMethod);
                 currentThread.currMethod = currentMethod;
