@@ -10,7 +10,6 @@ namespace TracerLibrary
     {
         private List<ThreadInfo> threads = new List<ThreadInfo> { };
         public static object locker = new object();
-        public int threadCounter = 0;
 
         public void StartTrace()
         {
@@ -26,12 +25,11 @@ namespace TracerLibrary
                         currentThread = item;
                     }
                 });
-                if (currentThread == null)
-                {
-                    currentThread = new ThreadInfo(threadId, threadTracer);
-                    threadCounter++;
-                    threads.Add(currentThread);
-                }
+            }
+            if (currentThread == null)
+            {
+                currentThread = new ThreadInfo(threadId, threadTracer);
+                threads.Add(currentThread);
             }
 
             StackFrame frame = new StackFrame(1);
@@ -72,14 +70,10 @@ namespace TracerLibrary
                 });
             }
 
-            lock (locker)
+            if (currentThread.currMethod.parent == null)
             {
-                if (currentThread.currMethod.parent == null)
-                {
-                    currentThread._tracer.Stop();
-                    threadCounter--;
-                    currentThread.millisecinds = (int)currentThread._tracer.Elapsed.TotalMilliseconds;
-                }
+                currentThread._tracer.Stop();
+                currentThread.millisecinds = (int)currentThread._tracer.Elapsed.TotalMilliseconds;
             }
 
             currentThread.currMethod._tracer.Stop();
@@ -96,7 +90,6 @@ namespace TracerLibrary
         
         public TraceResult GetTraceResult()
         {
-            while (threadCounter != 0);
             return new TraceResult(threads);
         }
     }
