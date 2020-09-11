@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Threading;
-using System.IO;
-using Newtonsoft.Json;
 using TracerLibrary;
 
 namespace Tracer
@@ -11,14 +9,13 @@ namespace Tracer
         static void Main(string[] args)
         {
             TracerLibrary.Tracer tracer = new TracerLibrary.Tracer();
- 
-            new Foo(tracer).MyMethod();
             Thread thrd1 = new Thread(new ThreadStart(new Bar(tracer).InnerMethod));
+            new Foo(tracer).MyMethod();
             thrd1.Start();
-            //new Foo(tracer).Test();
-            Thread.Sleep(10000);
+            thrd1.Join();
             TraceResult result = tracer.GetTraceResult();
-            Console.WriteLine(result.getJSONResult());
+            new FileOutput().printResult(result.getXMLResult());
+            new ConsoleOutput().printResult(result.getXMLResult());
             Console.ReadKey();
         }
     }
@@ -55,6 +52,7 @@ namespace Tracer
         public void InnerMethod()
         {
             _tracer.StartTrace();
+            InnerMethod2();
             InnerMethod2();
             Thread.Sleep(1000);
             _tracer.StopTrace();

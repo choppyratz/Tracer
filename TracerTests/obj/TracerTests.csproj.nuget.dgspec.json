@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\German\\source\\repos\\Tracer\\Tracer.csproj": {}
+    "C:\\Users\\German\\source\\repos\\TracerTests\\TracerTests.csproj": {}
   },
   "projects": {
     "C:\\Users\\German\\source\\repos\\TracerLibrary\\TracerLibrary.csproj": {
@@ -69,14 +69,14 @@
         }
       }
     },
-    "C:\\Users\\German\\source\\repos\\Tracer\\Tracer.csproj": {
+    "C:\\Users\\German\\source\\repos\\TracerTests\\TracerTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\German\\source\\repos\\Tracer\\Tracer.csproj",
-        "projectName": "Tracer",
-        "projectPath": "C:\\Users\\German\\source\\repos\\Tracer\\Tracer.csproj",
+        "projectUniqueName": "C:\\Users\\German\\source\\repos\\TracerTests\\TracerTests.csproj",
+        "projectName": "TracerTests",
+        "projectPath": "C:\\Users\\German\\source\\repos\\TracerTests\\TracerTests.csproj",
         "packagesPath": "C:\\Users\\German\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\German\\source\\repos\\Tracer\\obj\\",
+        "outputPath": "C:\\Users\\German\\source\\repos\\TracerTests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -110,29 +110,21 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
-            "ExtendedXmlSerializer": {
+            "MSTest.TestAdapter": {
               "target": "Package",
-              "version": "[3.2.6, )"
+              "version": "[2.1.0, )"
             },
-            "Newtonsoft.Json": {
+            "MSTest.TestFramework": {
               "target": "Package",
-              "version": "[12.0.3, )"
+              "version": "[2.1.0, )"
             },
-            "System.Configuration.ConfigurationManager": {
+            "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[4.7.0, )"
+              "version": "[16.5.0, )"
             },
-            "System.Resources.ResourceManager": {
+            "coverlet.collector": {
               "target": "Package",
-              "version": "[4.3.0, )"
-            },
-            "runtime.any.System.Resources.ResourceManager": {
-              "target": "Package",
-              "version": "[4.3.0, )"
-            },
-            "runtime.aot.System.Resources.ResourceManager": {
-              "target": "Package",
-              "version": "[4.3.0, )"
+              "version": "[1.2.0, )"
             }
           },
           "imports": [

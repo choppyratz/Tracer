@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TracerLibrary
 {
-    interface ISerialize
+    public interface ISerialize
     {
         public string getResult(object obj);
     }
